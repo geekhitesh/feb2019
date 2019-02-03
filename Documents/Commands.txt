@@ -1,0 +1,15 @@
+
+**Installation**
+1) Install composer
+2) composer global require laravel/installer
+3) laravel new project_name
+
+**Controller**
+4) php artisan make:controller GreetController
+
+
+*All mapping is done in routes/web.php
+
+
+*Run application
+5) php artisan serve
