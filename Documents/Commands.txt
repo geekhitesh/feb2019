@@ -1,15 +1,30 @@
 
 **Installation**
-1) Install composer
-2) composer global require laravel/installer
-3) laravel new project_name
+   Install composer
+   composer global require laravel/installer
+   laravel new project_name
 
 **Controller**
-4) php artisan make:controller GreetController
-
+   php artisan make:controller GreetController
+** Resource Controller
+   php artisan make:controller UserController --resource
 
 *All mapping is done in routes/web.php
 
 
-*Run application
+
+**Run application
 5) php artisan serve
+
+
+*CSRF Token
+
+<input type="hidden" name="_token" value="{{csrf_token()}}">
+
+
+**Include static files
+
+Always keep static files in public folder
+{{URL::asset('js/user.js')}}
+
+

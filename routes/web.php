@@ -23,4 +23,7 @@ Route::get('/greet','GreetController@simpleGreet');
 Route::get('/greet/{name}-{city}','GreetController@bestGreet');
 Route::get('/greet/{name}','GreetController@advancedGreet');
 
+Route::get('/user/create','UserController@create');
+Route::post('/user/store','UserController@store');
+
 

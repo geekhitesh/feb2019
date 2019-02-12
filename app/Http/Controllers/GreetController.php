@@ -26,4 +26,9 @@ class GreetController extends Controller
 
     	return view('bestgreet')->with(compact('user'));
     }
+
+    private sum($num1,$num2) {
+
+       return ($num1+$num2);
+    }
 }
