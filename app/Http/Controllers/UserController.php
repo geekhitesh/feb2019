@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\UserDetail;
 
 class UserController extends Controller
 {
@@ -11,6 +12,14 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    private $list;
+
+    public function __construct() {
+
+        $this->list = array("Hitesh","Harish","Rajesh","Ramesh","Suresh");
+    }
+
     public function index()
     {
         //
@@ -26,6 +35,11 @@ class UserController extends Controller
         return view('user.registeration');
     }
 
+    public function listView() {
+
+        return view('user.userlist');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -34,12 +48,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //$name = $request->input('name');
-        //$age = $request->input('age');
 
-        $all_data = $request->all();
+        //$all_data = $request->all();
 
-        $result = $this->validateRequest($all_data);
+        /*$result = $this->validateRequest($all_data);
 
         if($result) {
 
@@ -48,7 +60,19 @@ class UserController extends Controller
            return "good input";
         }
 
-        return "bad input";
+        return "bad input";*/
+
+        $name = $request->input('name');
+        $age = $request->input('age');
+
+        $userdetail = new UserDetail();
+        $userdetail->name = $name;
+        $userdetail->age = $age;
+        $userdetail->save();
+
+        $data = UserDetail::all();
+
+        return $data;
     }
 
     /**
@@ -59,7 +83,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = UserDetail::find($id);
+
+        return view('user.show')->with(compact('data'));
     }
 
     /**
@@ -80,9 +106,20 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $id = $request->input('id');
+        $name = $request->input('name');
+        $age = $request->input('age');
+
+        $userdetail = UserDetail::find($id);
+        $userdetail->name = $name;
+        $userdetail->age = $age;
+        $userdetail->save();
+
+        $data = UserDetail::all();
+
+        return $data;
     }
 
     /**
@@ -94,6 +131,19 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+        $userdetail = UserDetail::find($id);
+
+        //open a file and push that data to file.
+        
+        $userdetail = UserDetail::find($id);
+        $userdetail->delete();
+    }
+
+    public function getUserList() {
+        $data = UserDetail::all();
+
+        return $data;
+        
     }
 
 

@@ -15,7 +15,9 @@ class GreetController extends Controller
 
     public function advancedGreet($name) {
 
-    	return view('advancedgreet')->with(compact('name'));
+    	//return view('advancedgreet')->with(compact('name'));
+
+        return "Hello ".$name;
 
     }
 
@@ -27,7 +29,7 @@ class GreetController extends Controller
     	return view('bestgreet')->with(compact('user'));
     }
 
-    private sum($num1,$num2) {
+    private function sum($num1,$num2) {
 
        return ($num1+$num2);
     }

@@ -28,3 +28,40 @@ Always keep static files in public folder
 {{URL::asset('js/user.js')}}
 
 
+**Connect to database
+make changes in .env file.
+create database with name feb2019
+
+
+**To create a model
+	php artisan make:model UserDetail
+
+**Format of model
+	from table: user_details
+		a) remove underscore
+		b) remove 's' in the end. i.e. make it singular
+		c) have first letter as capital connected with "_"
+		d) tables are plural and models are singular.
+		e) table must have id(auto increment), created_at and updated_at
+		f) if you wanna change the table name -> protected $table = 'my_table'
+		g) if you wanna change the primary key -> protected $primaryKey = 'uid'
+
+
+** Three Types of relationships
+
+1-2-1 -> user -> phone
+1-2-m -> user -> post
+m-2-m -> user -> flats
+
+
+category->product = (1=>m)
+discount->product=(1=>m)
+User->Order=(1=>m)
+Order=>Product=(m=>m)
+
+
+Before running migration 
+
+add following in App/Providers/AppServiceProvider
+ use Schema;
+ Schema::defaultStringLength(191);
