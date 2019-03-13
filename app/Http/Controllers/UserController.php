@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\UserDetail;
+use Auth;
 
 class UserController extends Controller
 {
@@ -16,7 +17,7 @@ class UserController extends Controller
     private $list;
 
     public function __construct() {
-
+        
         $this->list = array("Hitesh","Harish","Rajesh","Ramesh","Suresh");
     }
 
@@ -140,9 +141,13 @@ class UserController extends Controller
     }
 
     public function getUserList() {
+
+        $user = Auth::user();
         $data = UserDetail::all();
 
         return $data;
+
+        //return $user->email;
         
     }
 

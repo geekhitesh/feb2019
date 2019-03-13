@@ -35,7 +35,7 @@ Route::post('/user/store','UserController@store');
 Route::get('/user/show/{id}','UserController@show');
 Route::post('/user/update','UserController@update');
 
-Route::get('/user/list','UserController@getUserList');
+//Route::get('/user/list','UserController@getUserList');
 
 Route::get('/user/listview','UserController@listView');
 
@@ -45,7 +45,6 @@ Route::get('user/edit',function () {
 	return view('user.update');
 
 });
-
 
 
 
@@ -82,5 +81,24 @@ Route::get('/ecommerce/test',function() {
     $products = $order->product;
     return $products;
 
-}) ;
+})->middleware('key_auth');
 
+
+Route::group(['middleware' => ['key_auth']], function () {
+    //
+    Route::get('/user/list','UserController@getUserList');
+});
+
+
+
+Route::group(['middleware' => ['auth']], function () {
+    //
+    Route::get('/user/list','UserController@getUserList');
+});
+
+
+// this->middelware('key_auth'); // inside controller constructor
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

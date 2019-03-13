@@ -64,4 +64,10 @@ Before running migration
 
 add following in App/Providers/AppServiceProvider
  use Schema;
- Schema::defaultStringLength(191);
+ Schema::defaultStringLength(191);]
+
+
+
+ ** To get details of authenticated user 
+
+ Auth::user()
